@@ -22,6 +22,7 @@ import { DetailsProduct } from './layout/details-product/details-product';
 import { Order } from './layout/order/order';
 import { ProductResolver } from './core/resolvers/product-resolver'; 
 import { ProductListDashboard } from './dashboard/product-list-dashboard/product-list-dashboard';
+import { UserData } from './dashboard/user-data/user-data';
 
 export const routes: Routes = [
     {
@@ -55,7 +56,8 @@ export const routes: Routes = [
             {path:'FAQList',component:FAQList},
            {path:'ProductList-Dashboard',component:ProductListDashboard},
             {path:'ContactList',component:ContactList},
-            {path:'report',component:Report}
+            {path:'report',component:Report},
+            {path:'users',component:UserData}
          ]
         },
  { path: '**', redirectTo: 'home' },
