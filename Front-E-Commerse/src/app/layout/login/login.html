@@ -1,0 +1,44 @@
+<div class="auth-container">
+  <div class="auth-card fade-in">
+    <div class="auth-header">
+      <h2>Sign In</h2>
+      <p>Welcome back! Please login to your account</p>
+    </div>
+
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+      <!-- Email -->
+      <div class="form-group">
+        <i class="fas fa-envelope input-icon"></i>
+        <input type="text" class="form-control" formControlName="email" placeholder="Email" />
+        <div *ngIf="loginform.get('email')?.invalid && loginform.get('email')?.touched" class="error-msg">
+          <span *ngIf="loginform.get('email')?.errors?.['required']">Email is required</span>
+          <span *ngIf="loginform.get('email')?.errors?.['email']">Enter a valid email</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input type="password"  class="form-control" formControlName="password" placeholder="Password" />
+        
+        <div *ngIf="loginform.get('password')?.invalid && loginform.get('password')?.touched" class="error-msg">
+          <span *ngIf="loginform.get('password')?.errors?.['required']">Password is required</span>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary" [disabled]="loginform.invalid || loading">
+        {{ loading ? 'Signing in...' : 'Sign In' }}
+      </button>
+
+      <!-- Server Error Message -->
+     <!-- Success / Error Messages -->
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </form>
+    <div class="auth-switch mt-3">
+      <span>Don't have an account? </span>
+      <a routerLink="/register">Sign up</a>
+    </div>
+  </div>
+</div>

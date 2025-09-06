@@ -1,0 +1,83 @@
+
+
+<h2 class="mb-4 title">❓ Frequently Asked Questions</h2>
+
+<!-- زر Add FAQ -->
+<div class="d-flex justify-content-end mb-3">
+  <button class="btn btn-primary" (click)="openAddModal()">+ Add FAQ</button>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped bg-white rounded shadow-sm"
+         *ngIf="faqs.length > 0; else noFAQ">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>Question</th>
+        <th>Answer</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let faq of faqs" class="align-middle">
+        <td>{{ faq.question }}</td>
+        <td>{{ faq.answer }}</td>
+        <td>
+          <button class="btn btn-sm btn-primary me-1" (click)="openUpdateModal(faq)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteFAQ(faq._id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noFAQ>
+  <p class="text-center text-muted">No FAQs found.</p>
+</ng-template>
+
+<!-- Add FAQ Modal -->
+<div id="addFAQModal" class="modal" [ngClass]="{'show': isAddModalOpen}" [style.display]="isAddModalOpen ? 'block':'none'">
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <h3 class="mb-3">Add New FAQ</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Question</label>
+        <input [(ngModel)]="newFAQ.question" class="form-control" placeholder="Enter your question">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Answer</label>
+        <textarea [(ngModel)]="newFAQ.answer" class="form-control" rows="4" placeholder="Enter the answer"></textarea>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-success" (click)="saveNewFAQ()">Save</button>
+        <button class="btn btn-secondary" (click)="closeAddModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Update FAQ Modal -->
+<div id="updateFAQModal" class="modal" [style.display]="selectedFAQ ? 'block' : 'none'">
+  <div class="modal-dialog">
+    <div class="modal-content p-4">
+      <h3 class="mb-3">Update FAQ</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Question</label>
+        <input [(ngModel)]="updatedFAQ.question" class="form-control">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Answer</label>
+        <textarea [(ngModel)]="updatedFAQ.answer" class="form-control" rows="4"></textarea>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button class="btn btn-success" (click)="saveUpdate()">Save</button>
+        <button class="btn btn-secondary" (click)="closeModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+.contact-form {
+  background-color: #ffffff; /* خلفية بيضاء زي الصورة */
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); 
+  margin-top: 50px;
+
+}
+
+.contact-form label {
+  font-weight: 600;
+  color: #333; /* نصوص غامقة وواضحة */
+  margin-bottom: 6px;
+  display: block;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px 15px;
+  color: #333;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #6f42c1; /* بنفسجي عند التركيز */
+  box-shadow: 0 0 8px rgba(111, 66, 193, 0.25);
+}
+
+.contact-form ::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.contact-form .text-danger {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* زر بنفسجي زي الصورة */
+.contact-form button {
+  background-color: #3834b0;
+  color: #fff;
+  font-weight: 600;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact-form button:hover:not(:disabled) {
+  background-color: #5d59e3 ;
+  box-shadow: 0 0 12px rgba(230, 231, 242, 0.3);
+}
+
+.contact-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}

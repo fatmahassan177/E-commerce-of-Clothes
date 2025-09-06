@@ -1,0 +1,54 @@
+<div class="orders-container mt-4 orders-container" *ngIf="!loading; else loader">
+  <h2>📝Testimonials</h2>
+
+  <table class="table table-striped table-bordered table-hover" *ngIf="testimonials.length > 0; else noData">
+    <thead class="table-dark">
+      <tr>
+        <th>User</th>
+        <th>Rating</th>
+        <th>Comment</th>
+      
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of testimonials">
+        <!-- 🧑‍💻 User Info -->
+        <td>
+          <b>{{ t.userId?.name }}</b><br />
+          <small>{{ t.userId?.email }}</small>
+        </td>
+
+        <!-- ⭐ Rating -->
+        <td>
+          <span class="text-warning">
+            <ng-container *ngFor="let star of [].constructor(t.rating)">⭐</ng-container>
+          </span>
+          <span class="ms-1">({{ t.rating }})</span>
+        </td>
+
+        <!-- 💬 Comment -->
+        <td>{{ t.comment }}</td>
+
+      
+
+        <!-- ⚡ Actions -->
+        <td class="text-center">
+        
+          
+          <button class="btn btn-sm btn-danger" (click)="delete(t._id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #loader>
+  <p>Loading testimonials...</p>
+</ng-template>
+
+<ng-template #noData>
+  <p>No unseen testimonials found.</p>
+</ng-template>
+
+

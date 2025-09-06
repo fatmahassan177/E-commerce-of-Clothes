@@ -1,0 +1,64 @@
+/* الخلفية نفس الثيم */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #00bcd4 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* سايد بار */
+.sidebar {
+  width: 260px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+.sidebar-title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #00bcd4;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin-bottom: 15px;
+}
+
+.sidebar-menu a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 10px 15px;
+  display: block;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-menu a:hover {
+  background: rgba(0, 188, 212, 0.2);
+  color: #00bcd4;
+}
+
+.sidebar-menu a.active {
+  background: #00bcd4;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* الكونتنت */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px 0 0 20px;
+  overflow-y: auto;
+}

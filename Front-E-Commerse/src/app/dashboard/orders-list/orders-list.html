@@ -1,0 +1,88 @@
+
+  <h2 class="mb-4 title">📋 All Orders</h2>
+
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-striped bg-white rounded shadow-sm"
+           *ngIf="orders.length > 0; else noOrders">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>User</th>
+          <th>Products</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Change Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders" class="align-middle">
+          <!-- 🧑‍💻 User Info -->
+          <td>
+            <b>{{ order.userId?.name }}</b><br />
+            <small class="text-muted">{{ order.userId?.email }}</small>
+          </td>
+
+          <!-- 🛒 Products -->
+          <td>
+            <ul class="list-unstyled">
+              <li *ngFor="let p of order.products" class="d-flex align-items-center mb-1">
+                <img [src]="StaticURL + '/' + p.image"
+                     alt="{{ p.name }}"
+                     class="img-thumbnail me-2"
+                     width="50">
+                <span>{{ p.name }} (x{{ p.quantity }}) - {{ p.price }} EGP</span>
+              </li>
+            </ul>
+          </td>
+
+          <!-- 💰 Total -->
+          <td class="fw-bold text-success">{{ order.totalPrice }} EGP</td>
+
+          <!-- 📦 Status -->
+          <td>
+            <span class="badge"
+                  [ngClass]="{
+                    'bg-warning text-dark': order.status === 'Pending',
+                    'bg-info text-dark': order.status === 'Preparing',
+                    'bg-primary': order.status === 'Ready for Shipping',
+                    'bg-success': order.status === 'Shipped',
+                    'bg-danger': order.status === 'Cancelled'
+                  }">
+              {{ order.status }}
+            </span>
+          </td>
+
+          <!-- 🔄 Change Status -->
+          <td>
+            <select class="form-select form-select-sm mb-2"
+                    #status
+                    (change)="onStatusChange(order._id, status.value)">
+              <option value="">-- Select --</option>
+              <option value="Preparing">Preparing</option>
+              <option value="Ready for Shipping">Ready for Shipping</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+
+            <!-- ✍️ Cancel Reason -->
+            <div *ngIf="selectedOrderId === order._id && selectedStatus === 'Cancelled'"
+                 class="mt-2">
+              <textarea [(ngModel)]="cancelReason"
+                        class="form-control mb-2"
+                        placeholder="Enter cancel reason"
+                        rows="2"></textarea>
+              <button class="btn btn-sm btn-danger w-100"
+                      (click)="confirmCancel(order._id)">
+                Confirm Cancel
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+<!-- No Orders -->
+<ng-template #noOrders>
+  <p class="text-center text-muted">No orders found.</p>
+</ng-template>

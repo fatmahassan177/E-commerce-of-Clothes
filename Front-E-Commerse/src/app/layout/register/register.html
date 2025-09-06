@@ -1,0 +1,94 @@
+<div class="auth-container">
+  <div class="auth-card fade-in">
+    <div class="auth-header">
+      <h2>Sign Up</h2>
+      <p>Create your account to get started</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Name -->
+      <div class="form-group">
+        <i class="fas fa-user input-icon"></i>
+        <input type="text" class="form-control" formControlName="name" placeholder="Full Name" />
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-msg">
+          Name is required
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <i class="fas fa-envelope input-icon"></i>
+        <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-msg">
+          Enter a valid email
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <i class="fas fa-lock input-icon"></i>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password" placeholder="Password" />
+        <i class="fas fa-eye password-toggle" (click)="togglePassword()"></i>
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-msg">
+          Password must be at least 6 characters
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="form-group">
+            <i class="fas fa-road input-icon"></i>
+            <input type="text" class="form-control" formControlName="street" placeholder="Street" />
+            <div *ngIf="registerForm.get('street')?.invalid && registerForm.get('street')?.touched" class="error-msg">
+              Street is required
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <i class="fas fa-city input-icon"></i>
+            <input type="text" class="form-control" formControlName="city" placeholder="City" />
+            <div *ngIf="registerForm.get('city')?.invalid && registerForm.get('city')?.touched" class="error-msg">
+              City is required
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Governorate -->
+      <div class="form-group">
+        <i class="fas fa-map-marker-alt input-icon"></i>
+        <select class="form-control" formControlName="governorate">
+          <option value="">Select Governorate</option>
+          <option *ngFor="let gov of governorates" [value]="gov">{{ gov }}</option>
+        </select>
+        <div *ngIf="registerForm.get('governorate')?.invalid && registerForm.get('governorate')?.touched" class="error-msg">
+          Governorate is required
+        </div>
+      </div>
+
+
+      <!-- Terms -->
+      <div class="checkbox-wrapper">
+        <input type="checkbox" formControlName="agreeTerms" />
+        <label>I agree to <a href="#">Terms & Conditions</a></label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid || loading">
+        {{ loading ? 'Creating...' : 'CREATE ACCOUNT' }}
+      </button>
+
+      <!-- Success / Error Messages -->
+      <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+    </form>
+
+    <div class="auth-switch">
+      <span>Already have an account? </span>
+      <a routerLink="/login">Sign in</a>
+    </div>
+  </div>
+</div>

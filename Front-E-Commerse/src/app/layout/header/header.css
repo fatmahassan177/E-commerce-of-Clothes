@@ -1,0 +1,22 @@
+.hero-header {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(100, 104, 164, 0.5)), url('/img/header.png');
+    background-position: cnter;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding-top: 56px; /* لتجنب تداخل الناف بار مع المحتوى */
+}
+
+.hero-content {
+    z-index: 5; /* لضمان ظهور المحتوى فوق الصورة */
+}
+
+.hero-header h2 {
+    font-size: 4rem;
+}

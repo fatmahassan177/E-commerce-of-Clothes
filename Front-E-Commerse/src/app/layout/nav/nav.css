@@ -1,0 +1,50 @@
+/* الناف بار شفاف */
+.navbar {
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* تنسيق روابط الناف بار */
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 10px;
+   
+}
+
+/* تأثير الهوفر */
+.navbar .nav-link:hover,
+.navbar .navbar-brand:hover {
+    color: #00bcd4 !important;
+}
+
+/* خط تحت الرابط عند الهوفر */
+.navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background-color: #00bcd4;
+    transition: width 0.3s ease;
+}
+
+.navbar .nav-link:hover::after {
+    width: 100%;
+}
+
+/* حجم الأيقونات */
+.navbar .fa-user,
+.navbar .fa-cart-shopping,
+.navbar .fa-right-to-bracket,
+.navbar .fa-house,
+.navbar .fa-shirt,
+.navbar .fa-circle-question,
+.navbar .fa-envelope {
+    font-size: 1.25rem;
+}

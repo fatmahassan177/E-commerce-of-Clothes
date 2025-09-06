@@ -1,0 +1,114 @@
+<div class="container mt-4">
+
+  <!-- ---------- Form Add/Edit Product ---------- -->
+  <div class="card mb-4">
+    <div class="card-header">
+      <h5>{{ isEditMode ? 'Edit Product' : 'Add Product' }}</h5>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" formControlName="title" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Price</label>
+            <input type="number" class="form-control" formControlName="price" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Route</label>
+            <input type="text" class="form-control" formControlName="route" />
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Stock</label>
+            <input type="number" class="form-control" formControlName="stock" />
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">Gender</label>
+            <select class="form-select" formControlName="gender">
+              <option value="">Select Gender</option>
+              <option value="men">Men</option>
+              <option value="women">Women</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Category</label>
+            <select class="form-select" formControlName="category">
+              <option value="">Select Category</option>
+              <option *ngFor="let c of categories" [value]="c._id">{{c.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <textarea class="form-control" formControlName="desc"></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Image</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          {{ isEditMode ? 'Update Product' : 'Add Product' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="resetForm()">Reset</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ---------- Product Table ---------- -->
+  <div class="card">
+    <div class="card-header">
+      <h5>Products List</h5>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>#</th>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Category</th>
+            <th>Gender</th>
+            <th>Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of products; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>
+              <img [src]="p.imgurl" alt="{{p.title}}" width="60" height="60" />
+            </td>
+            <td>{{ p.title }}</td>
+            <td>${{ p.price }}</td>
+            <td>{{ p.stockStatus }}</td>
+            <td>{{ p.category?.name }}</td>
+            <td>{{ p.category?.gender }}</td>
+            <td>{{ p.desc }}</td>
+            <td>
+              <button class="btn btn-sm btn-warning me-1" (click)="editProduct(p)">Edit</button>
+              <button class="btn btn-sm btn-danger" (click)="deleteProduct(p._id)">Delete</button>
+            </td>
+          </tr>
+          <tr *ngIf="products.length === 0">
+            <td colspan="9" class="text-center">No products found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

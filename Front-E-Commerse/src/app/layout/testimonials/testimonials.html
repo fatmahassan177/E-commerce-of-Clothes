@@ -1,0 +1,74 @@
+<section class="testimonials-section">
+  <div class="container py-5">
+    
+    <!-- Header Section -->
+    <div class="text-center mb-5">
+      <h2 class="testimonials-title display-5 fw-bold text-dark mb-3">They Said About Our Service</h2>
+      <p class="testimonials-subtitle text-muted col-lg-8 mx-auto">
+        We have helped thousands of organizations, and we are proud to know that we work with entities 
+        that certainly help them in their work in their company
+      </p>
+    </div>
+
+    <!-- Testimonials Grid -->
+    <div  class="row g-4">
+      <div 
+        *ngFor="let testimonial of testimonials; let i = index" 
+        class="col-lg-4 col-md-6"
+        [attr.data-aos]="'fade-up'"
+        [attr.data-aos-delay]="i * 100"
+      >
+        <div class="testimonial-card h-100">
+          
+          <!-- Quote Icon -->
+          <div class="quote-icon mb-3">
+            <i class="fas fa-quote-left"></i>
+          </div>
+          
+          <!-- Rating Stars -->
+          <div class="rating mb-3">
+            <i 
+              *ngFor="let star of getStars(testimonial.rating)"
+              [class]="star + ' star-icon'"
+            ></i>
+          </div>
+          
+          <!-- Comment -->
+          <div class="comment mb-4">
+            <p class="text-muted lh-lg">
+              "{{ testimonial.comment }}"
+            </p>
+          </div>
+          
+          <!-- User Info -->
+          <div class="user-info d-flex align-items-center mt-auto">
+            <!-- User Avatar -->
+            <div class="user-avatar me-3">
+  <i class="fas fa-user-circle fa-3x text-secondary"></i>
+</div>
+
+            
+            <!-- User Details -->
+            <div class="user-details">
+              <h6 class="user-name mb-0 fw-bold text-dark">
+                {{ testimonial.userId.name }}
+              </h6>
+              
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="pagination-dots text-center mt-5" *ngIf="testimonials.length > 3">
+      <span 
+        *ngFor="let dot of [1,2,3]; let i = index" 
+        class="dot"
+        [class.active]="i === 0"
+      ></span>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<h2 class="mb-4 title">📩 Contact Messages</h2>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped bg-white rounded shadow-sm"
+         *ngIf="contacts.length > 0; else noContacts">
+    <thead class="table-dark text-center">
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Message</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of contacts" class="align-middle">
+        <td><b>{{ c.FirstName }} {{ c.LastName }}</b></td>
+        <td>{{ c.email }}</td>
+        <td>{{ c.message }}</td>
+        <td>{{ c.type || '-' }}</td>
+        <td>
+          <button class="btn btn-sm btn-danger" (click)="deleteMessage(c._id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noContacts>
+  <p class="text-center text-muted">No contact messages found.</p>
+</ng-template>

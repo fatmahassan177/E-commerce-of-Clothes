@@ -1,0 +1,31 @@
+<div class="faq-section ">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <!-- النص على اليسار -->
+      <div class="col-md-5">
+        <h2 class="faq-title">FAQ</h2>
+        <p class="faq-description">
+          FAQs are structured in a question-and-answer format, where questions are typically phrased as they would naturally be asked by users, and answers are concise and straightforward.
+        </p>
+      </div>
+
+      <!-- الأسئلة على اليمين -->
+      <div class="col-md-7">
+        <h4 class="faq-heading">Frequently asked questions</h4>
+
+        
+        <div class="faq-list" >
+          <div class="faq-item" *ngFor="let item of faqList; let i = index" [class.active]="selectedIndex === i">
+            <button class="faq-question" (click)="toggleFAQ(i)">
+              {{ item.question }}
+            </button>
+            <div class="faq-answer" *ngIf="selectedIndex === i">
+              <p>{{ item.answer }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

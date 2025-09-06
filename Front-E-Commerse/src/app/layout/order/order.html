@@ -1,0 +1,47 @@
+<div *ngIf="cart" class="order-container">
+  <h2 class="title">🛒 Your Cart</h2>
+
+  <ul class="cart-list">
+    <li *ngFor="let item of cart.items" class="cart-item">
+      <img [src]="item.imgurl" alt="{{ item.productName }}" class="cart-img" />
+      <div class="item-info">
+        <h4>{{ item.productName }}</h4>
+        <p>{{ item.quantity }} × {{ item.priceAtAdd }} EGP</p>
+      </div>
+    </li>
+  </ul>
+
+  <div class="cart-total">
+    <h3>Total: <span>{{ cart.totalPrice }} EGP</span></h3>
+  </div>
+
+  <form [formGroup]="orderForm" (ngSubmit)="submitOrder()" class="order-form">
+    <h3 class="form-title">📝 Shipping Address</h3>
+
+    <input type="text" formControlName="street" placeholder="Street" class="form-input" />
+    <input type="text" formControlName="city" placeholder="City" class="form-input" />
+
+    <select formControlName="governorate" class="form-input">
+      <option value="">Select Governorate</option>
+      <option *ngFor="let gov of [
+        'Cairo','Giza','Alexandria','Dakahlia','Sharqia','Qalyubia',
+        'Kafr El Sheikh','Gharbia','Monufia','Beheira','Ismailia',
+        'Suez','Port Said','Damietta','Fayoum','Beni Suef','Minya',
+        'Assiut','Sohag','Qena','Luxor','Aswan','Red Sea',
+        'New Valley','Matrouh','North Sinai','South Sinai'
+      ]" [value]="gov">{{ gov }}</option>
+    </select>
+
+    <button type="submit" class="submit-btn">✅ Place Order</button>
+  </form>
+
+ 
+
+</div>
+ <div *ngIf="orderSuccess" class="toast success-toast">
+  ✅ Order placed successfully!
+</div>
+
+<div *ngIf="orderError" class="toast error-toast">
+  ❌ Failed to place order. Please try again.
+</div>

@@ -1,0 +1,81 @@
+<!-- dashboard/sales-report-dashboard.html -->
+
+<div class="report-container">
+  <h2>📊 Sales Report</h2>
+
+  <div class="date-filters mb-3">
+    <label>Start Date: <input type="date" [(ngModel)]="startDate" /></label>
+    <label>End Date: <input type="date" [(ngModel)]="endDate" /></label>
+    <button class="btn btn-primary" (click)="fetchReport()">Fetch Report</button>
+  </div>
+
+  <div *ngIf="loading">⏳ Loading report...</div>
+
+  <div *ngIf="report">
+    <!-- Total Summary -->
+    <div class="summary mb-3">
+      <p>Total Sales Amount: {{ report.Total[0]?.totalSalesAmout | currency:'EGP' }}</p>
+      <p>Total Quantity Sold: {{ report.Total[0]?.totalQuantitySold }}</p>
+      <p>Number of Purchases: {{ report.Total[0]?.numberOfPurchases }}</p>
+    </div>
+
+    <!-- Top Products -->
+    <h3>🏆 Top Products</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Revenue</th>
+          <th>Quantity Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of report.topProducts">
+          <td>{{ p.name }}</td>
+          <td>{{ p.revenue | currency:'EGP' }}</td>
+          <td>{{ p.QuantitySold }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Sales By Users -->
+    <h3>👥 Top Users</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>User</th>
+          <th>Total Spent</th>
+          <th>Total Units</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of report.salesByUsers">
+          <td>{{ u.name }}</td>
+          <td>{{ u.totalSpent | currency:'EGP' }}</td>
+          <td>{{ u.totalUnits }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Monthly Sales -->
+    <h3>📅 Monthly Sales</h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Revenue</th>
+          <th>Quantity Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of report.MonthlySales">
+          <td>{{ m._id.month }}/{{ m._id.year }}</td>
+          <td>{{ m.totalRevenue | currency:'EGP' }}</td>
+          <td>{{ m.totalQuantitySold }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="!loading && !report">No report available for selected dates.</div>
+</div>

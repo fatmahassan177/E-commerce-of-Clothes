@@ -1,0 +1,38 @@
+<!-- المنتج الأساسي -->
+<div class="main-product" *ngIf="product">
+  <div class="container">
+    <div class="main-card">
+      <img [src]="staticURL + product?.imgurl" alt="{{product?.title}}" class="main-img">
+      <div class="main-details">
+        <h1>{{product?.title}}</h1>
+        <p class="price">{{product?.price}} $</p>
+        <p class="desc">{{product?.desc}}</p>
+
+        <div class="stock-status" 
+          [ngClass]="{
+            'in-stock': product?.stockStatus === 'In Stock',
+            'limited-stock': product?.stockStatus === 'Limited Stock',
+            'out-of-stock': product?.stockStatus === 'Out of Stock'
+          }">
+          {{ product?.stockStatus }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- منتجات متعلقة -->
+<div class="related-section" *ngIf="relatedProducts.length > 0">
+  <div class="container">
+    <h2>Related Products</h2>
+    <div class="related-grid">
+      <div *ngFor="let prod of relatedProducts" class="related-card">
+        <img [src]="staticURL + '/' + prod.imgurl" alt="{{ prod.title }}">
+        <h3>{{ prod.title }}</h3>
+        <p class="product-price">{{ prod.price }} $</p>
+        <small class="category">{{ prod.category?.name }}</small>
+        <a class="details-btn" [routerLink]="'/product/' + prod.route">More Details</a>
+      </div>
+    </div>
+  </div>
+</div>

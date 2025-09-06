@@ -1,0 +1,30 @@
+<div class="auth-container">
+  <div class="auth-card fade-in">
+    <div class="auth-header">
+      <h2>My Profile</h2>
+      <p>View your account details</p>
+    </div>
+
+    
+
+    <!-- بيانات المستخدم -->
+    <div *ngIf="user" class="profile-details">
+      <div class="form-group">
+        <i class="fas fa-user input-icon"></i>
+        <label>Name:</label>
+        <p>{{ user.name }}</p>
+      </div>
+      
+      <div class="form-group">
+        <i class="fas fa-user-tag input-icon"></i>
+        <label>Role:</label>
+        <p>{{ user.role }}</p>
+      </div>
+
+      <!-- زر تسجيل الخروج -->
+      <button class="btn btn-danger" (click)="logout()">Log Out</button>
+    </div>
+
+   
+  </div>
+</div>

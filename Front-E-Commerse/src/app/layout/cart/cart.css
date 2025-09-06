@@ -1,0 +1,147 @@
+.cart-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.cart-title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 15px 0;
+  gap: 20px;
+}
+
+.cart-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.cart-details {
+  flex: 1;
+}
+
+.product-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #444;
+}
+
+.price {
+  font-size: 15px;
+  color: #666;
+}
+
+.price span {
+  font-weight: bold;
+  color: #2d89ef;
+}
+
+.stock-warning {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #e74c3c;
+  font-weight: 500;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.qty-btn {
+  background: #f1f1f1;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.qty {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.remove-btn:hover {
+  background: #e63939;
+}
+
+.cart-summary {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.cart-summary h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.cart-summary span {
+  color: #2d89ef;
+  font-weight: bold;
+}
+
+.clear-btn,
+.checkout-btn {
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 0 10px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.clear-btn {
+  background: #f39c12;
+  color: white;
+}
+
+.clear-btn:hover {
+  background: #d9820f;
+}
+
+.checkout-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.checkout-btn:hover {
+  background: #219150;
+}
+
+.empty-cart {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 18px;
+  color: #666;
+}
